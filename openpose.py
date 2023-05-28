@@ -6,10 +6,12 @@ weightsFile = "testfolder/file/pose_iter_160000.caffemodel"
 def pose_save(frame,frame_num,x,y,w,h):
     
     net = cv2.dnn.readNetFromCaffe(protoFile, weightsFile)
-    x1 = x + w // 2 - 120
-    y1 = y + h // 2 - 120
-    x2 = x + w //2 + 120
-    y2 = y + h //2 + 120
+    
+    boxline = max(w,h)
+    x1 = x + w // 2 - boxline
+    y1 = y + h // 2 - boxline
+    x2 = x + w // 2 + boxline
+    y2 = y + h // 2 + boxline
     
     image_height, image_width, _ = frame.shape
     
@@ -20,8 +22,8 @@ def pose_save(frame,frame_num,x,y,w,h):
     
     frame1 = frame[y1:y2,x1:x2]
     
-    w = 240
-    h = 240
+    w = boxline
+    h = boxline
     
     previous_x, previous_y = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     
@@ -33,7 +35,7 @@ def pose_save(frame,frame_num,x,y,w,h):
     
     circle_color, line_color = (0,255,255), (0,255,0)
     
-    inpBlob = cv2.dnn.blobFromImage(frame1, 0.00392, (368, 368), (0, 0, 0), swapRB=True, crop=False)
+    inpBlob = cv2.dnn.blobFromImage(frame1, 0.00392, (boxline*2, boxline*2), (0, 0, 0), swapRB=True, crop=False)
     net.setInput(inpBlob)
     output = net.forward()
     H = output.shape[2]
@@ -44,9 +46,11 @@ def pose_save(frame,frame_num,x,y,w,h):
     for i in range(15):
         probMap = output[0, i, :, :]
         minVal, prob, minLoc, point = cv2.minMaxLoc(probMap)
-        x = (w * point[0]) / W
-        y = (h * point[1]) / H
-        
+        # x = (w * point[0]) / W
+        # y = (h * point[1]) / H
+        x = (w * point[0]) / (boxline*(1/8))
+        y = (h * point[1]) / (boxline*(1/8))   
+                
         if prob > 0.1:
             points.append((int(x), int(y)))
             x_data.append(x)
@@ -62,8 +66,10 @@ def pose_save(frame,frame_num,x,y,w,h):
         partA = pair[0]
         partB = pair[1]
         cv2.line(frame1, points[partA], points[partB], line_color, 1, lineType=cv2.LINE_AA)
-    cv2.imwrite('cropped_image/person_'+str(frame_num)+'_skelecton.jpg',frame1)
+    # cv2.imwrite('cropped_image/person_'+str(frame_num)+'_skelecton.jpg',frame1)
     cv2.imshow('skelecton',frame1)
+    x_data = [x / (boxline*2) for x in x_data]
+    y_data = [y / (boxline*2) for y in y_data]
     return x_data,y_data
 
     
