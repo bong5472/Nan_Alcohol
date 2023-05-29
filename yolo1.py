@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-import time # -- 프레임 계산을 위해 사용
 
 import os
 

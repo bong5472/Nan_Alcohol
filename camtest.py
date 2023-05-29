@@ -1,7 +1,7 @@
 from scipy.spatial import distance as dist
 import numpy as np
 import pandas as pd
-import progressbar
+# import progressbar
 import cv2
     
 # ----- test ----
@@ -125,8 +125,8 @@ import cv2
 
 def pose(frame):
     # setting
-    protoFile = "./file/pose_deploy_linevec.prototxt"
-    weightsFile = "./file/pose_iter_160000.caffemodel"
+    protoFile = "C:/Users/User/Desktop/공모전/해커톤/file/pose_deploy_linevec.prototxt"
+    weightsFile = "C:/Users/User/Desktop/공모전/해커톤/file/pose_iter_160000.caffemodel"
     
     net = cv2.dnn.readNetFromCaffe(protoFile, weightsFile)
 
