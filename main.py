@@ -24,3 +24,15 @@ for file in files:
 
 df = pd.DataFrame(drunk_df)
 df.to_csv('drunk.csv',index=False)
+
+normal_df = []
+
+folder_path = 'D:/hackaton_video/normal'
+
+for file in files:
+    input_file = folder_path + '/' + file
+    drunk_df.append(videoDetect.detect_to_csv(input_file,'normal'))
+    print(input_file+' --- finished')
+
+df = pd.DataFrame(normal_df)
+df.to_csv('normal.csv',index=False)
