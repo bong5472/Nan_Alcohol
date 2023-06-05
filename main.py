@@ -24,7 +24,7 @@ def main(video_path):
     
     frame_num = 0
     data = [[]]
-    result = 0
+    result = [[0]]
     drunken = False
     tracking_data = [[0,0,0,0],[0,0,0,0],[0,0,0,0]]
     if not cap.isOpened:
@@ -54,14 +54,15 @@ def main(video_path):
             if len(data[0]) > 100:
                 data = [data[0][1:]]
                 result = model.predict(data)
-                print('pose :',result)
+                print('pose >:',result[0][0])
             elif len(data[0]) == 100:
                 result = model.predict(data)
-                print('pose :',result)
+                print('pose =:',result[0][0])
             frame_num += 1
             # tracker 설정
-            if result >= 0.5:
-                druken = True
+            if result[0][0] >= 0.5:
+                print('trans')
+                drunken = True
                 tracker = cv2.TrackerMIL_create()
                 isInit = tracker.init(frame,(x,y,w,h))
         # drunk detect 후
@@ -84,7 +85,7 @@ def main(video_path):
                 else:
                     drunken = False
                     data = []
-                    result = 0
+                    result = [[0]]
                     tracking_data = [[0,0,0,0],[0,0,0,0],[0,0,0,0]]
                     
         cv2.imshow('drunk detecting...',frame)
