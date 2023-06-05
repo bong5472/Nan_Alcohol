@@ -13,6 +13,7 @@ def main(video_path):
     cap = cv2.VideoCapture(video_path)
     frame_num = 0
     data = []
+    result = 0
     drunken = False
     if not cap.isOpened:
         print('Video failed --- break')
@@ -39,7 +40,20 @@ def main(video_path):
                     continue
                 else:
                     data.append(pose_data)
+            # 100프레임 고정
+            if len(data) > 100:
+                data = data[1:]
+                result = model.predict(data).argmax(axis = 1)
+            elif len(data) == 100:
+                result = model.predict(data).argmax(axis = 1)
+            else:
+                continue
             frame_num += 1
+            # tracker 설정
+            if result == 1:
+                druken = True
+                tracker = tracker()
+                isInit = tracker.init(frame,(x,y,w,h))
         # drunk detect 후
         else:
             print()
