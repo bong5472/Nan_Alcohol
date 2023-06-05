@@ -51,11 +51,11 @@ def main(video_path):
                 if count_zero(pose_data) <= 10:
                     data[0].append(pose_data)
             # 100프레임 고정
-            if len(data) > 100:
+            if len(data[0]) > 100:
                 data = [data[0][1:]]
                 result = model.predict(data)
                 print('pose :',result)
-            elif len(data) == 100:
+            elif len(data[0]) == 100:
                 result = model.predict(data)
                 print('pose :',result)
             frame_num += 1
