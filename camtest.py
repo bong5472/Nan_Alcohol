@@ -125,8 +125,8 @@ import cv2
 
 def pose(frame):
     # setting
-    protoFile = "C:/Users/User/Desktop/공모전/해커톤/file/pose_deploy_linevec.prototxt"
-    weightsFile = "C:/Users/User/Desktop/공모전/해커톤/file/pose_iter_160000.caffemodel"
+    protoFile = "pose_deploy_linevec.prototxt"
+    weightsFile = "pose_iter_160000.caffemodel"
     
     net = cv2.dnn.readNetFromCaffe(protoFile, weightsFile)
 

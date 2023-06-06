@@ -3,7 +3,7 @@ import yolo1
 import openpose
 import tensorflow as tf
 
-model = tf.keras.models.load_model('C:/drunk.h5') # DL 모델
+model = tf.keras.models.load_model('drunk.h5') # DL 모델
 def count_zero(arr):
     count = 0
     for i in arr:
@@ -100,4 +100,4 @@ def main(video_path):
     out.release()
     cv2.destroyAllWindows()
            
-main("C:/test3.mp4")
+main("test3.mp4")

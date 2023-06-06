@@ -5,14 +5,14 @@ import os
 
 import crop
 
-model_file = 'testfolder/yolov3.weights' #-- 본인 개발 환경에 맞게 변경할 것
-config_file = 'testfolder/yolov3.cfg' #-- 본인 개발 환경에 맞게 변경할 것
+model_file = 'yolov3.weights' #-- 본인 개발 환경에 맞게 변경할 것
+config_file = 'yolov3.cfg' #-- 본인 개발 환경에 맞게 변경할 것
 net = cv2.dnn.readNet(model_file, config_file)
 
 def detect(frame,num):
     min_confidence = 0.5
     classes = []
-    with open("testfolder/coco.names", "r") as f:
+    with open("coco.names", "r") as f:
         classes = [line.strip() for line in f.readlines()]
     layer_names = net.getLayerNames()
     output_layers = [layer_names[i - 1] for i in net.getUnconnectedOutLayers()]
@@ -59,7 +59,7 @@ def detect(frame,num):
 def detect_car(frame,num):
     min_confidence = 0.5
     classes = []
-    with open("testfolder/coco.names", "r") as f:
+    with open("coco.names", "r") as f:
         classes = [line.strip() for line in f.readlines()]
     layer_names = net.getLayerNames()
     output_layers = [layer_names[i - 1] for i in net.getUnconnectedOutLayers()]

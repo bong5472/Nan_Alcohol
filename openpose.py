@@ -1,7 +1,7 @@
 import cv2
 
-protoFile = "testfolder/file/pose_deploy_linevec.prototxt"
-weightsFile = "testfolder/file/pose_iter_160000.caffemodel"
+protoFile = "pose_deploy_linevec.prototxt"
+weightsFile = "pose_iter_160000.caffemodel"
 
 def pose_save(frame,frame_num,x,y,w,h):
     

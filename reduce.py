@@ -1,7 +1,7 @@
 import cv2
 import os
 
-input_file = 'C:/Users/User/Desktop/공모전/해커톤/video/input.mp4'
+input_file = 'input.mp4'
 
 def reduce_video(input_file,number):
     cap = cv2.VideoCapture(input_file)
@@ -73,8 +73,8 @@ def get_files_in_folder(folder_path):
             file_list.append(os.path.join(file))
     return file_list
 
-folder_path = 'D:/hackaton_video/before'
-output_path = 'D:/hackaton_video/after/'
+folder_path = 'before'
+output_path = 'after/'
 files = get_files_in_folder(folder_path)
 
 num = 0

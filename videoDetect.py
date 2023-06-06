@@ -8,7 +8,7 @@ os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"]="0,1,2"
 
 
-video_path = 'testfolder/short.mp4' #-- 사용할 영상 경로
+video_path = 'short.mp4' #-- 사용할 영상 경로
 
 def detect_to_csv(video_path,label):
     cap = cv2.VideoCapture(video_path)

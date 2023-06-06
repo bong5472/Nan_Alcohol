@@ -18,7 +18,7 @@ tracker = None
 isFirst = True
 
 video_src = 0 # 비디오 파일과 카메라 선택 ---②
-video_src = "testfolder/video/video1.mp4"
+video_src = "video1.mp4"
 # video_src = "D:/hackaton_video/outsidedoor_12/618-7/618-7_cam01_drunken01_place03_night_spring.mp4"
 cap = cv2.VideoCapture(video_src)
 fps = cap.get(cv2.CAP_PROP_FPS) # 프레임 수 구하기

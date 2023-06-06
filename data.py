@@ -3,7 +3,7 @@ import os
 import videoDetect
 import pandas as pd
 
-folder_path = 'D:/hackaton_video/after'
+folder_path = 'after'
 
 def get_files_in_folder(folder_path):
     file_list = []
@@ -27,7 +27,7 @@ df.to_csv('drunk.csv',index=False)
 
 normal_df = []
 
-folder_path = 'D:/hackaton_video/normal'
+folder_path = 'normal'
 
 for file in files:
     input_file = folder_path + '/' + file
