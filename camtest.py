@@ -161,7 +161,7 @@ def pose(frame):
     points = []
     x_data, y_data = [], []
     
-    # Iterate through the returned output and store the data
+    
     for i in range(15):
         probMap = output[0, i, :, :]
         minVal, prob, minLoc, point = cv2.minMaxLoc(probMap)
